@@ -47,7 +47,6 @@ public class Employee {
 		this.description = description;
 		this.jobYears = jobYears;
 		this.email = email;
-
 	}
 
 	public boolean validateArguments(String firstName, String lastName, String description, int jobYears, String email) {
@@ -55,7 +54,7 @@ public class Employee {
 		if (lastName == null || lastName.isEmpty()) return false;
 		if (description == null || description.isEmpty()) return false;
 		if (jobYears < 0) return false;
-		if (email == null || email.isEmpty()) return false;
+		if (email == null || email.isEmpty() || !email.contains("@")) return false;
 		return true;
 	}
 

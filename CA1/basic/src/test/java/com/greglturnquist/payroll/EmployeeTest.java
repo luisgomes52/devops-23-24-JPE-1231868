@@ -85,6 +85,20 @@ class EmployeeTest {
     }
 
     @Test
+    void invalidEmployeeEmail(){
+
+        // Arrange
+        String firstName = "firstName";
+        String lastName = "lastName";
+        String description = "description";
+        int jobYears = 5;
+        String email = "email";
+
+        // Act and Assert
+        assertThrows(InstantiationException.class, () -> new Employee(firstName, lastName, description, jobYears, email));
+    }
+
+    @Test
     void negativeEmployeeJobYears(){
 
         // Arrange
