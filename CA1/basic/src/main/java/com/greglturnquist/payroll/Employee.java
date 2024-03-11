@@ -35,23 +35,27 @@ public class Employee {
 	private String lastName;
 	private String description;
 	private int jobYears;
+	private String email;
 
 	private Employee() {}
 
-	public Employee(String firstName, String lastName, String description, int jobYears) throws InstantiationException {
-		if(!validateArguments(firstName, lastName, description, jobYears))
+	public Employee(String firstName, String lastName, String description, int jobYears, String email) throws InstantiationException {
+		if(!validateArguments(firstName, lastName, description, jobYears, email))
 			throw new InstantiationException("Please enter a valid first name, last name, description and job years.");
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.description = description;
 		this.jobYears = jobYears;
+		this.email = email;
+
 	}
 
-	public boolean validateArguments(String firstName, String lastName, String description, int jobYears) {
+	public boolean validateArguments(String firstName, String lastName, String description, int jobYears, String email) {
 		if (firstName == null || firstName.isEmpty()) return false;
 		if (lastName == null || lastName.isEmpty()) return false;
 		if (description == null || description.isEmpty()) return false;
 		if (jobYears < 0) return false;
+		if (email == null || email.isEmpty()) return false;
 		return true;
 	}
 
@@ -64,7 +68,16 @@ public class Employee {
 			Objects.equals(firstName, employee.firstName) &&
 			Objects.equals(lastName, employee.lastName) &&
 			Objects.equals(description, employee.description) &&
-				Objects.equals(jobYears, employee.jobYears);
+				Objects.equals(jobYears, employee.jobYears) &&
+				Objects.equals(email, employee.email);
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public int getJobYears() {
@@ -78,7 +91,7 @@ public class Employee {
 	@Override
 	public int hashCode() {
 
-		return Objects.hash(id, firstName, lastName, description, jobYears);
+		return Objects.hash(id, firstName, lastName, description, jobYears, email);
 	}
 
 	public Long getId() {
@@ -120,7 +133,8 @@ public class Employee {
 			", firstName='" + firstName + '\'' +
 			", lastName='" + lastName + '\'' +
 			", description='" + description + '\'' +
-				", jobYears=" + jobYears+
+				", jobYears=" + jobYears +
+				", email=" + email +
 			'}';
 	}
 }
