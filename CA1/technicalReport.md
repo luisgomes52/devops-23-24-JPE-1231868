@@ -114,9 +114,7 @@ git push origin ca1-part2
 
 There was a minor mistake, I´ve forgot to add the issues # to the commits.
 That would associate each commit with the respective issue and it could also close it, by using the keywords.
-
-
-
+Also, to merge the branch and keep the visual history of the branches ramification, I should've used git merge --no-ff email-field.
 
 ## Alternative Version Control Solution: Mercurial SCM
 
