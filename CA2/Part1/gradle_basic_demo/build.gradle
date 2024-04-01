@@ -75,3 +75,9 @@ task backup(type: Copy) {
     into 'backup'
 }
 
+task createZip(type: Zip) {
+    from 'src'
+    def timestamp = new Date().format('yyyyMMdd-HHmmss')
+    archiveFileName = "snapshot.zip-${timestamp}"
+    destinationDirectory = file('backup')
+}
