@@ -1,0 +1,157 @@
+
+# Technical Report for CA3-Part1: Virtualization with Vagrant
+
+## Table of Contents
+
+- [Introduction](#introduction)
+- [1. Setting up the VM](#1-setting-up-the-vm)
+  - [1.1. Installing Git](#11-installing-git)
+  - [1.2. Installing Maven](#12-installing-maven)
+  - [1.3. Installing Java 17](#13-installing-java-17)
+  - [1.4. Installing Gradle Version 8.6](#14-installing-gradle-version-86)
+- [2. Project Migration and Setup](#2-project-migration-and-setup)
+  - [2.1 Cloning the Repository](#21-cloning-the-repository)
+  - [2.2 Configuring Maven Wrapper and Gradle Wrapper](#22-configuring-maven-wrapper-and-gradle-wrapper)
+  - [2.3 Running the Project](#23-running-the-project)
+    - [2.3.1. Running the CA1 Project](#231-running-the-ca1-project)
+    - [2.3.2. Running the CA2 - Part1 Project](#232-running-the-ca2---part1-project)
+    - [2.3.3 Running the CA2 - Part2 Project](#233-running-the-ca2---part2-project)
+- [3. Version Control and Documentation](#3-version-control-and-documentation)
+- [Problems Encountered](#problems-encountered)
+- [Conclusion](#conclusion)
+
+## Introduction
+
+This assignment aimed to get us accustomed to using VirtualBox and Ubuntu within a virtual machine setup. We achieved this by creating a Virtual Machine (VM), cloning our individual repositories inside the VM, and successfully building and running projects such as the Spring Boot tutorial basic project and the gradle_basic_demo project.
+
+## 1. Setting up the VM
+
+We need to create a new VM with Ubuntu 20.04.3 LTS using VirtualBox. The VM should have at least 2GB of RAM and 2 CPUs, with default settings for the rest of the configuration. After setting up the VM, log in and install the necessary software.
+
+### 1.1. Installing Git
+
+```bash
+sudo apt update
+sudo apt install git
+```
+
+### 1.2. Installing Maven
+
+```bash
+sudo apt install maven
+```
+
+### 1.3. Installing Java 17
+
+```bash
+sudo apt install openjdk-17-jdk
+```
+
+* Verify the installation:
+
+```bash
+java -version
+```
+
+## 2. Project Migration and Setup
+
+### 2.1 Cloning the Repository
+
+* Access the terminal via the VM's interface.
+* Create a directory for CA3 and clone the repository (ensure the repository is public).
+
+```bash
+mkdir CA3
+cd CA3
+git init
+git clone https://github.com/luisgomes52/devops-23-24-JPE-1231868.git
+```
+
+### 2.2 Configuring Maven Wrapper and Gradle Wrapper
+
+* Grant execution permissions to Maven and Gradle wrappers.
+
+```bash
+chmod +x mvnw
+chmod +x gradlew
+```
+
+### 2.3 Running the Project
+
+#### 2.3.1. Running the CA1 Project
+
+* Navigate to the project directory.
+* Build the project using Maven:
+
+```bash
+./mvnw clean install
+```
+
+* Run the project:
+
+```bash
+./mvnw spring-boot:run
+```
+
+* Verify the application's functionality by accessing it from a web browser on your host machine using the VM's IP address and the port specified in the project configuration.
+
+```bash
+ip addr
+```
+
+* Enter the IP and port 8080 in the browser's address bar.
+
+#### 2.3.2. Running the CA2 - Part1 Project
+
+* Navigate to the project directory.
+* Build the project using Gradle and run the server:
+
+```bash
+./gradlew build
+./gradlew runServer
+```
+
+* Run the client from the computer terminal (or alternatively from the IDE terminal):
+
+```bash
+./gradlew runClient --args="192.168.56.10 59001"
+```
+
+#### 2.3.3 Running the CA2 - Part2 Project
+
+* Navigate to the project directory.
+* In the basic folder:
+
+```bash
+./gradlew build
+./gradlew bootRun
+```
+
+* To open the project front-end in a browser, get the VM IP:
+
+```bash
+ip addr
+```
+
+* Enter the IP and port 8080 in the browser's address bar.
+
+### 3. Version Control and Documentation
+
+* Commit your changes and push them to your repository.
+
+```bash
+git add .
+git commit -m "[DOCS] #21 Create Readme file of CA3 - Part1"
+git push origin main
+```
+
+* Tag the final submission:
+
+```bash
+git tag -a ca3-part1
+git push origin --tags
+```
+
+## Conclusion
+
+Completing CA3 Part 1 marks the successful setup of a virtual development environment using VirtualBox and the migration of two projects into this environment. Through this exercise, we have enhanced our understanding of virtualization technology and improved our ability to configure and manage distinct development environments. These skills are essential in professional contexts where aligning development and production environments is critical for effective testing and deployment processes.
